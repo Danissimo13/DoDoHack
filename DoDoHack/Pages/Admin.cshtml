@@ -1,0 +1,42 @@
+﻿@page
+@model DoDoHack.Pages.AdminModel
+@{
+    ViewData["Title"] = "Администрирование";
+}
+
+<link rel="stylesheet" href="~/css/admin.css" />
+
+<div id="admin">
+    <a class="action" asp-page="Couriers">
+        <img src="~/img/design/courier.jpg" height="150" />
+        <h5>Курьеры</h5>
+    </a>
+    <a class="action" asp-page="RegRequests">
+        <img src="~/img/design/reg-requests.jpg" height="150" />
+        <h5>Подтверждение курьеров</h5>
+    </a>
+    <a class="action" asp-page="CreateOrder">
+        <img src="~/img/design/create-order.jpg" height="150" />
+        <h5>Выставить заказ</h5>
+    </a>
+    <a class="action" asp-page="WorkZones">
+        <img src="~/img/design/create-zone.jpg" height="150" />
+        <h5>Зоны доставки</h5>
+    </a>
+    <a class="action" asp-page="Orders">
+        <img src="~/img/design/orders.jpg" height="150" />
+        <h5>Заказы</h5>
+    </a>
+    <a class="action" asp-page="AllNews">
+        <img src="~/img/design/create-news.jpg" height="150" />
+        <h5>Новости</h5>
+    </a>
+    <a class="action" asp-page="Products">
+        <img src="~/img/design/products.jpg" height="150" />
+        <h5>Продукты</h5>
+    </a>
+    <a class="action" asp-page="Line">
+        <img src="~/img/design/line.jpg" height="150" />
+        <h5>Чат линии</h5>
+    </a>
+</div>

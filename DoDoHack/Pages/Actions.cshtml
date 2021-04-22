@@ -1,0 +1,44 @@
+﻿@page
+@model DoDoHack.Pages.ActionsModel
+@{
+    ViewData["Title"] = "Курьерская";
+}
+
+<link rel="stylesheet" href="~/css/actions.css" />
+
+<div id="actions">
+    <div id="list">
+        <a class="action" asp-page="Orders">
+            <img src="~/img/design/orders.jpg" height="150" />
+            <h5>Заказы</h5>
+        </a>
+        @if (Model.Courier.OnOrder)
+        {
+            <a class="action" asp-page="Order" asp-route-Id="@Model.Courier.OnOrderId.GetValueOrDefault()">
+                <img src="~/img/design/courier.jpg" height="150" />
+                <h5>Твой заказ</h5>
+            </a>
+        }
+        <a class="action" asp-page="AllNews">
+            <img src="~/img/design/news.jpg" height="150" />
+            <h5>Важные новости</h5>
+        </a>
+        <a class="action" asp-page="Line">
+            <img src="~/img/design/line.jpg" height="150" />
+            <h5>Чат линии</h5>
+        </a>
+    </div>
+    <div id="courier-chat">
+        <h2>Курьерский чат</h2>
+        <div id="messages"></div>
+        <div id="write">
+            <textarea id="message-text"></textarea>
+            <button class="btn btn-primary" id="send-message">Отправить</button>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/actions.js"></script>
+}

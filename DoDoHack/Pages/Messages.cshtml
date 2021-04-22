@@ -1,0 +1,23 @@
+﻿@page
+@model DoDoHack.Pages.MessagesModel
+@{
+    ViewData["Title"] = "Сообщения";
+}
+
+<link rel="stylesheet" href="~/css/messages.css"/>
+
+<div id="messages">
+    <h1>Сообщения</h1>
+    <div id="admins">
+        @foreach (Admin admin in Model.DialogAdmins)
+        {
+            <a class="dialog admin" asp-page="Conversation" asp-route-Id="@admin.Id">Администратор №@admin.Id</a>
+        }
+    </div>
+    <div id="couriers">
+        @foreach(Courier courier in Model.DialogCouriers)
+        {
+            <a class="dialog courier" asp-page="Conversation" asp-route-Id="@courier.Id">Курьер @courier.Name @courier.Surname №@courier.Id </a>
+        }
+    </div>
+</div>

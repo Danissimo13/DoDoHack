@@ -1,0 +1,20 @@
+﻿#news{
+    display : flex;
+    flex-direction : column;
+    width : 100%;
+    max-width : 600px;
+    margin : 10px auto;
+}
+
+#news #header{
+    text-align : center;
+}
+
+#news #body{
+    margin-top : 10px;
+}
+
+#news #publish-date{
+    margin-left : auto;
+    margin-top : 10px;
+}

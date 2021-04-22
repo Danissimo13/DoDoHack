@@ -1,0 +1,54 @@
+﻿#reg-requests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto 10px;
+    width : 90%;
+    padding: 10px;
+}
+
+#no-requests{
+    text-align : center;
+}
+
+.request{
+    display: flex;
+    flex-direction : row;
+    justify-content : space-between;
+    align-items : center;
+    padding: 5px;
+    border: 2px solid var(--secondary-color);
+    border-radius : 5px;
+    margin-top : 10px;
+    width : 100%;
+}
+
+.actions{
+    display : flex;
+    flex-direction : row;
+}
+
+.accept{
+    padding : 5px;
+    background-color : forestgreen;
+    color : white;
+    border-radius : 5px;
+    border : none;
+    margin : 2.5px;
+}
+
+.remove {
+    padding: 5px;
+    background-color: orangered;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin: 2.5px;
+}
+
+#to-reg {
+    margin-top: 10px;
+}
+
+@media only screen and (max-device-width: 480px) {
+}

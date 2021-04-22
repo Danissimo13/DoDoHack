@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoDoHack", "DoDoHack\DoDoHack.csproj", "{346944AD-1886-4010-80C1-136B8A4A3819}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoDoModels", "DoDoModels\DoDoModels.csproj", "{E0908950-D34F-44E8-B5EB-6438EAD60FDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{346944AD-1886-4010-80C1-136B8A4A3819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346944AD-1886-4010-80C1-136B8A4A3819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346944AD-1886-4010-80C1-136B8A4A3819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346944AD-1886-4010-80C1-136B8A4A3819}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0908950-D34F-44E8-B5EB-6438EAD60FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0908950-D34F-44E8-B5EB-6438EAD60FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0908950-D34F-44E8-B5EB-6438EAD60FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0908950-D34F-44E8-B5EB-6438EAD60FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30924E87-976E-4D9A-8056-880741D79F3B}
+	EndGlobalSection
+EndGlobal

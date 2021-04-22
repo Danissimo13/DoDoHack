@@ -1,0 +1,39 @@
+﻿@page
+@model DoDoHack.Pages.CreateOrderModel
+@{
+    ViewData["Title"] = "Выставить заказ";
+}
+
+<link rel="stylesheet" href="~/css/create-order.css" />
+
+<div id="create-order">
+    <form method="post">
+        <input asp-for="Input.ClientPhone" placeholder="Телефон заказчика" />
+        <span class="validation" asp-validation-for="Input.ClientPhone"></span>
+
+        <input asp-for="Input.Address" placeholder="Адресс" />
+        <span class="validation" asp-validation-for="Input.Address"></span>
+
+        <input asp-for="Input.Apartment" placeholder="Квартира" />
+        <span class="validation" asp-validation-for="Input.Apartment"></span>
+
+        <input asp-for="Input.Comment" placeholder="Комментарий" />
+        <span class="validation" asp-validation-for="Input.Comment"></span>
+
+        <textarea asp-for="Input.ProductsIds" placeholder="Id продуктов через запятую"></textarea>
+        <span class="validation" asp-validation-for="Input.ProductsIds"></span>
+
+        <input asp-for="Input.TotalCost" placeholder="Итоговая цена" />
+        <span class="validation" asp-validation-for="Input.TotalCost"></span>
+
+        <select asp-for="Input.WorkZoneId">
+            <option value="">Зона доставки</option>
+            @foreach (WorkZone workZone in Model.WorkZones)
+            {
+                <option value="@workZone.Id">@workZone.Name</option>
+            }
+        </select>
+
+        <input class="btn btn-primary" type="submit" value="Выставить" />
+    </form>
+</div>

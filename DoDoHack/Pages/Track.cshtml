@@ -1,0 +1,25 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.TrackModel
+@{
+    ViewData["Title"] = "Отслеживание";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+<link rel="stylesheet" href="~/css/track.css" />
+
+<div id="track">
+    <input id="courier-id" value="@Model.Id" hidden />
+    <h2>Отслеживание (@Model.Courier.Name @Model.Courier.Surname) №@Model.Courier.Id</h2>
+    <div id="map-container">
+        <div id="no-tracking">
+            <h3>Курьер пока не включил отслеживание</h3>
+        </div>
+        <div id="map"></div>
+    </div>
+    <button class="btn btn-primary" id="change-track-save-btn">Сохранять треки на карте</button>
+</div>
+
+@section Scripts{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="~/js/track.js"></script>
+}

@@ -1,0 +1,41 @@
+﻿h1{
+    text-align : center;
+}
+
+#orders{
+    display : flex;
+    margin : 10px auto;
+    flex-direction : column;
+    align-items : center;
+    width : 100%;
+    max-width : 600px;
+}
+
+#orders #list{
+    display : flex;
+    flex-direction : column;
+    width : 100%;
+    padding : 10px;
+    border : 2px solid var(--secondary-color);
+    border-radius : 5px;
+}
+
+#orders #list .order {
+    display: flex;
+    flex-direction: row;
+    justify-content : space-between;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding : 5px;
+    margin-top : 5px;
+    transition : all 0.5s;
+}
+
+#orders #list .order:hover{
+    background-color : var(--secondary-color);
+    color : var(--primary-color);
+}
+
+#page-controller{
+    margin : 10px;
+}

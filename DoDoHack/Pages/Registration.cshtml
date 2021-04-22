@@ -1,0 +1,29 @@
+﻿@page
+@model DoDoHack.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<link rel="stylesheet" href="~/css/reg.css" />
+
+<div id="reg">
+    <h1>Регистрация</h1>
+    <form method="post">
+        <input asp-for="Input.Login" placeholder="Логин" />
+        <span class="validation" asp-validation-for="Input.Login"></span>
+
+        <input asp-for="Input.Name" placeholder="Имя" />
+        <span class="validation" asp-validation-for="Input.Name"></span>
+
+        <input asp-for="Input.Surname" placeholder="Фамилия" />
+        <span class="validation" asp-validation-for="Input.Surname"></span>
+
+        <input asp-for="Input.Phone" type="tel" placeholder="Телефон" />
+        <span class="validation" asp-validation-for="Input.Phone"></span>
+
+        <input asp-for="Input.Password" type="password" placeholder="Пароль" />
+        <span class="validation" asp-validation-for="Input.Password"></span>
+
+        <input class="btn btn-primary" value="Отправить заявку" type="submit"/>
+    </form>
+</div>

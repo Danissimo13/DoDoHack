@@ -1,0 +1,29 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.DayTracksModel
+@{
+    ViewData["Title"] = "Трек путь за день";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="~/css/day-track.css" />
+
+<div id="day-track">
+    <input id="courier-id" value="@Model.Id" hidden />
+    <h2>Трек курьера (@Model.Courier.Name @Model.Courier.Surname) №@Model.Courier.Id за день</h2>
+    <div>
+        <label for="track-day">День отслеживания: </label>
+        <input id="track-day" type="date" />
+    </div>
+    <div id="map-container">
+        <div id="no-tracking">
+            <h3>На выбранный день нет данных</h3>
+        </div>
+        <div id="map"></div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="~/js/day-track.js"></script>
+}

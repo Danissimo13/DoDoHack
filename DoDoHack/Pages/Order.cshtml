@@ -1,0 +1,99 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.OrderModel
+@{
+    ViewData["Title"] = $"Заказ №{Model.Order.Id}";
+}
+
+<link rel="stylesheet" href="~/css/order.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<div id="order">
+    <h1>Данные заказа</h1>
+    <div id="order-data">
+        <img src="~/img/design/dodo-logo.png" width="150" />
+        <div id="data">
+            <h5>Дата заказа: @Model.Order.CreatedTime.ToShortDateString() @Model.Order.CreatedTime.ToShortTimeString()</h5>
+            <h5>Итоговая сумма: @Model.Order.TotalCost</h5>
+            <h5>Адресс: @Model.Order.Address @Model.Order.Apartment</h5>
+            <h5>Телефон клиента: @Model.Order.ClientPhone</h5>
+            <h5>
+                Статус:
+                @if (Model.Order.Closed)
+                {
+                    <span class="closed">Закрыл <a asp-page="Courier" asp-route-Id="@Model.Order.CourierId">@Model.Order.Courier.Name</a></span>
+                }
+                else if (Model.Order.CourierId.HasValue)
+                {
+                    <span class="delivering">Доставляет - <a asp-page="Courier" asp-route-Id="@Model.Order.CourierId">@Model.Order.Courier.Name</a></span>
+                }
+                else
+                {
+                    <span class="opened">Свободен</span>
+                }
+            </h5>
+        </div>
+    </div>
+    <div id="products">
+        <h2>Список заказа</h2>
+        <ul id="product-list">
+            @if (Model.Order.Products.Any())
+            {
+                @foreach (Product product in Model.Order.Products)
+                {
+                    <li class="product">
+                        @product.Id - @product.Name - @product.Cost₽
+                    </li>
+                }
+            }
+            else
+            {
+                <li>Эм...Походу клиент ничего не заказал :D</li>
+            }
+        </ul>
+    </div>
+    <div id="comment">
+        <h2>Комментарий к заказу</h2>
+        <p>@Model.Order.Comment</p>
+    </div>
+    <div id="route">
+        <input id="street" value="@Model.Order.Address" hidden />
+        <div id="map"></div>
+    </div>
+    <div id="actions">
+        @if (User.IsInRole(nameof(Admin)))
+        {
+            <form asp-page-handler="Delete">
+                <input asp-for="Id" value="@Model.Id" hidden />
+                <input class="btn btn-primary" type="submit" value="Удалить" />
+            </form>
+        }
+
+        @if (User.IsInRole(nameof(Courier)))
+        {
+            @if (!Model.Order.Closed && !Model.Order.CourierId.HasValue && (Model.Courier != null) && (Model.Courier.ShiftOpen) && (Model.Courier.OnLine) && (!Model.Courier.OnOrder))
+            {
+                <form asp-page-handler="Take">
+                    <input asp-for="Id" value="@Model.Id" hidden />
+                    <input class="btn btn-primary" type="submit" value="Взять" />
+                </form>
+            }
+
+            @if (!Model.Order.Closed && Model.Order.CourierId.HasValue && (Model.Order.CourierId.Value.ToString() == User.FindFirst("Id")?.Value))
+            {
+                <form asp-page-handler="Close">
+                    <input asp-for="Id" value="@Model.Id" hidden />
+                    <input class="btn btn-primary" type="submit" value="Закрыть" />
+                </form>
+                <form asp-page-handler="Cancel">
+                    <input asp-for="Id" value="@Model.Id" hidden />
+                    <input class="btn btn-primary" type="submit" value="Отказаться" />
+                </form>
+            }
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="~/js/order.js"></script>
+}

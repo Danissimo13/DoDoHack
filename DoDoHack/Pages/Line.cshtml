@@ -1,0 +1,22 @@
+﻿@page
+@model DoDoHack.Pages.LineModel
+@{
+    ViewData["Title"] = "Чат Линии";
+}
+
+<link rel="stylesheet" href="~/css/line.css"/>
+
+<div id="line">
+    <h2>Чат рабочей линии</h2>
+    <div id="line-chat">
+        <div id="messages"></div>
+        <div id="write">
+            <textarea id="message-text"></textarea>
+            <button class="btn btn-primary" id="send-message">Отправить</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/line.js"></script>
+} 

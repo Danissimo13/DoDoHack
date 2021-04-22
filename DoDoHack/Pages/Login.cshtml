@@ -1,0 +1,22 @@
+﻿@page
+@model DoDoHack.Pages.LoginModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<link rel="stylesheet" href="~/css/login.css"/>
+
+<div id="login">
+    <form method="post">
+        <input asp-for="Input.Login" placeholder="Логин" />
+        <span class="validation" asp-validation-for="Input.Login"></span>
+        <input asp-for="Input.Password" type="password" placeholder="Пароль" />
+        <span class="validation" asp-validation-for="Input.Password"></span>
+        <div>
+            <label for="LoginInput.RememberMe">Запомнить?</label>
+            <input asp-for="Input.RememberMe" type="checkbox" />
+        </div>
+        <input class="btn btn-primary" type="submit" value="Войти"/>
+    </form>
+    <a id="to-reg" class="btn btn-primary" href="/Registration">Регистрация</a>
+</div>

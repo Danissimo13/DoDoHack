@@ -1,0 +1,22 @@
+﻿#reg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px auto 10px;
+    width: 300px;
+    padding: 10px;
+}
+
+#reg form {
+    display: flex;
+    flex-direction: column;
+}
+
+#reg form input {
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 2px solid orange;
+}
+
+@media only screen and (max-device-width: 480px) {
+}

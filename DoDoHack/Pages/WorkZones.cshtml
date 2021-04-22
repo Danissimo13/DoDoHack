@@ -1,0 +1,40 @@
+﻿@page
+@model DoDoHack.Pages.WorkZonesModel
+@{
+    ViewData["Title"] = "Добавить зону работы";
+}
+
+<link rel="stylesheet" href="~/css/work-zones.css" />
+
+<div id="zones">
+    <form class="create-form" asp-page-handler="Create">
+        <input name="zoneName" placeholder="Название зоны" />
+        <span class="validation">@Model.ZoneMessage</span>
+
+        <input class="btn btn-primary" type="submit" value="Добавить" />
+    </form>
+
+    <div id="list">
+        @foreach (WorkZone workZone in Model.WorkZones)
+        {
+            <div class="zone">
+                <div>@workZone.Id - @workZone.Name : Закреплено @workZone.PinnedCouriers.Count() курьеров</div>
+                <form class="delete-form" asp-page-handler="Delete">
+                    <input name="deleteId" value="@workZone.Id" hidden />
+                    <input class="delete" type="submit" value="Удалить" />
+                </form>
+            </div>
+        }
+
+        <div id="page-controller">
+            @if (Model.PageNumber > 1)
+            {
+                <a class="btn btn-primary" asp-page="/WorkZones" asp-route-PageNumber="@(Model.PageNumber - 1)">Назад</a>
+            }
+            @if (Model.WorkZones.Count() == WorkZonesModel.ZonesOnPage)
+            {
+                <a class="btn btn-primary" asp-page="/WorkZones" asp-route-PageNumber="@(Model.PageNumber - 1)">Вперёд</a>
+            }
+        </div>
+    </div>
+</div>

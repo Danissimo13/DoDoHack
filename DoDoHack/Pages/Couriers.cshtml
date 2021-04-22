@@ -1,0 +1,34 @@
+﻿@page
+@model DoDoHack.Pages.CouriersModel
+@{
+    ViewData["Title"] = "Курьеры";
+}
+
+<link rel="stylesheet" href="~/css/couriers.css" />
+
+<div id="couriers">
+    <a asp-page="Couriers" asp-route-Free="True">Показать только свободных курьеров</a>
+    <h1>Все курьеры</h1>
+    @if (Model.Couriers.Any() == false)
+    {
+        <h3>Курьеров пока что нет</h3>
+    }
+
+    @foreach (Courier courier in Model.Couriers)
+    {
+        <a class="courier" href="/Courier/@courier.Id">
+            <div>@courier.Id - @courier.Name @courier.Surname - @courier.Rating ⭐</div>
+        </a>
+    }
+
+    <div id="page-controller">
+        @if (Model.PageNumber > 1)
+        {
+            <a class="btn btn-primary" asp-page="Couriers" asp-route-PageNumber="@(Model.PageNumber - 1)">Назад</a>
+        }
+        @if(Model.Couriers.Count() == CouriersModel.CouriersOnPage)
+        {
+            <a class="btn btn-primary" asp-page="Couriers" asp-route-PageNumber="@(Model.PageNumber + 1)">Вперёд</a>
+        }
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.ConversationModel
+@{
+    ViewData["Title"] = $"Переписка с {Model.Id}";
+}
+
+<link rel="stylesheet" href="~/css/conversation.css" />
+
+<div id="conversation">
+    @if(Model.DialogPartner is Admin)
+    {
+        <h1>Переписка с Администратором №@Model.DialogPartner.Id</h1>
+    }
+    else if(Model.DialogPartner is Courier)
+    {
+        var courier = Model.DialogPartner as Courier;
+        <h1>Переписка с Курьером(@courier.Name @courier.Surname) №@courier.Id</h1>
+    }
+    <div id="chat">
+        <h2>Чат</h2>
+        <div id="messages"></div>
+        <div id="write">
+            <textarea id="message-text"></textarea>
+            <button class="btn btn-primary" id="send-message">Отправить</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/conversation.js"></script>
+}

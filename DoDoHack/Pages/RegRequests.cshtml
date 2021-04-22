@@ -1,0 +1,34 @@
+﻿@page
+@using DoDoModels
+@model DoDoHack.Pages.RegRequestsModel
+@{
+    ViewData["Title"] = "Запросы на регистрацию";
+}
+
+<link rel="stylesheet" href="~/css/reg-requests.css" />
+
+<div id="reg-requests">
+    @if (Model.RegisrationCouriers.Any() == false)
+    {
+        <h1 id="no-requests">Пока нет запросов на регистрацию</h1>
+    }
+
+    @foreach (Courier courier in Model.RegisrationCouriers)
+    {
+        <div class="request">
+            <div>@courier.Name @courier.Surname - @courier.Phone</div>
+            <div class="actions">
+                <form method="post">
+                    <input asp-for="Id" value="@courier.Id" hidden />
+                    <input asp-for="Accepted" type="checkbox" hidden />
+                    <input class="remove" type="submit" value="Отклонить" />
+                </form>
+                <form method="post">
+                    <input asp-for="Id" value="@courier.Id" hidden />
+                    <input asp-for="Accepted" type="checkbox" checked hidden />
+                    <input class="accept" type="submit" value="Принять" />
+                </form>
+            </div>
+        </div>
+    }
+</div>

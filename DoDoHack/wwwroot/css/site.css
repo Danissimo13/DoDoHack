@@ -1,0 +1,174 @@
+﻿@font-face {
+    font-family: "main";
+    src: url('../fonts/main.otf') format("truetype");
+    font-style: normal;
+    font-weight: normal;
+} 
+
+:root {
+    --primary-color: white;
+    --secondary-color: #ff6900;
+    background-color: var(--primary-color) !important;
+    color: var(--secondary-color);
+    
+}
+
+* {
+    font-family: main, Calibri !important;
+}
+
+body {
+    background-color: var(--primary-color) !important;
+    color: var(--secondary-color);
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+a:hover{
+    color : orangered;
+}
+
+.btn-primary {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-color: var(--primary-color);
+    border: 2px solid;
+}
+
+.btn:focus, .btn.focus {
+    outline: 0;
+}
+
+.btn:focus, .btn.focus {
+    box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    -webkit-box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    -moz-box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    -webkit-box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    -moz-box-shadow: 0px 0px 10px 1px var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:target {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.navbar {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-brand {
+    color: var(--secondary-color) !important;
+    filter: blur(30%);
+}
+
+.nav-link {
+    color: var(--secondary-color) !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid var(--secondary-color);
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem var(--secondary-color);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.validation{
+    color : orangered;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #f2bf93;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .25) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .25) 50%, rgba(255, 255, 255, .25) 75%, transparent 75%, transparent);
+}
+
+#sos{
+    position : fixed;
+    display : block;
+    top : calc(100% - 120px);
+    left: calc(100% - 65px);
+    height : 40px;
+    width : 60px;
+}
+
+#sos.called{
+    background-color : red;
+    border-color : white;
+}

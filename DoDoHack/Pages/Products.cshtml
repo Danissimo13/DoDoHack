@@ -1,0 +1,60 @@
+﻿@page
+@model DoDoHack.Pages.ProductsModel
+@{
+    ViewData["Title"] = "Продукты";
+}
+
+<link rel="stylesheet" href="~/css/products.css" />
+
+<div id="products">
+    <div id="create-product">
+        <h2 id="create-product-slide">Добавить продукт</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="Input.Name" placeholder="Название" />
+            <span class="validation" asp-validation-for="Input.Name"></span>
+
+            <input asp-for="Input.Cost" placeholder="Цена" />
+            <span class="validation" asp-validation-for="Input.Cost"></span>
+
+            <div class="input-wrapper">
+                <input class="input-file" asp-for="Input.Image" type="file" value="Изображение" accept=".jpg, .jpeg, .png, .gif, .bmp" placeholder="Изображение" />
+                <label asp-for="Input.Image" class="input-file-button">
+                    <span class="input-file-icon-wrapper"><img class="input-file-icon" src="~/img/design/add.svg" alt="Выбрать файл" width="25"></span>
+                    <span class="input-file-button-text">Выберите файл</span>
+                </label>
+            </div>
+            <span class="validation" asp-validation-for="Input.Image"></span>
+
+
+            <input class="btn btn-primary" type="submit" value="Добавить" />
+        </form>
+    </div>
+    <div id="list">
+        @foreach(Product product in Model.Products)
+        {
+            <div class="product">
+                <h3>@(product.Id).@(product.Name)</h3>
+                <h4>@product.Cost&#8381;</h4>
+                <img src="~/img/products/@product.ImageName" width="120" />
+                <form asp-page-handler="Delete">
+                    <input name="productId" value="@product.Id" hidden />
+                    <input class="btn btn-primary" type="submit" value="Удалить"/>
+                </form>
+            </div>
+        }
+    </div>
+    <div id="page-controller">
+        @if (Model.PageNumber > 1)
+        {
+            <a class="btn btn-primary" asp-page="Orders" asp-route-PageNumber="@(Model.PageNumber - 1)">Назад</a>
+        }
+        @if (Model.Products.Count() == ProductsModel.ProductsOnPage)
+        {
+            <a class="btn btn-primary" asp-page="Orders" asp-route-PageNumber="@(Model.PageNumber + 1)">Вперёд</a>
+        }
+    </div>
+</div>
+
+@section Scripts{ 
+    <script src="~/js/products.js"></script>
+}

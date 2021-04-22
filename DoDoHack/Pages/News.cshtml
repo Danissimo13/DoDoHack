@@ -1,0 +1,15 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.NewsModel
+@{
+    ViewData["Title"] = Model.News.Topic;
+}
+
+<link rel="stylesheet" href="~/css/news.css"/>
+
+<div id="news">
+    <h1 id="header">@Model.News.Topic</h1>
+    <p id="body">
+        @Html.Raw(Model.News.Body)
+    </p>
+    <h6 id="publish-date" class="text-muted">@Model.News.PublishDate.ToShortDateString()</h6>
+</div>

@@ -1,0 +1,53 @@
+﻿@page
+@model DoDoHack.Pages.OrdersModel
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<link rel="stylesheet" href="~/css/orders.css" />
+
+<div id="orders">
+
+    @if (Model.Orders.Any())
+    {
+        <h1>Заказы</h1>
+        <div id="list">
+            @foreach (Order order in Model.Orders)
+            {
+                <a class="order" asp-page="Order" asp-route-Id="@order.Id">
+                    <div>@order.CreatedTime.ToShortDateString() @order.CreatedTime.ToShortTimeString() </div>
+                    <div>@order.TotalCost</div>
+                    <div>@order.WorkZone</div>
+                    @if (order.Closed)
+                    {
+                        <div class="closed">Закрыт</div>
+                    }
+                    else if (order.CourierId.HasValue)
+                    {
+                        <div class="delivering">Доставляется</div>
+                    }
+                    else
+                    {
+                        <div class="opened">Свободен</div>
+                    }
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <h1>Заказов пока что нет</h1>
+    }
+
+
+    <div id="page-controller">
+        @if (Model.PageNumber > 1)
+        {
+            <a class="btn btn-primary" asp-page="Orders" asp-route-PageNumber="@(Model.PageNumber - 1)">Назад</a>
+        }
+        @if (Model.Orders.Count() == OrdersModel.OrdersOnPage)
+        {
+            <a class="btn btn-primary" asp-page="Orders" asp-route-PageNumber="@(Model.PageNumber + 1)">Вперёд</a>
+        }
+    </div>
+</div>

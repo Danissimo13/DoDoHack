@@ -1,0 +1,36 @@
+﻿#messages{
+    display : flex;
+    flex-direction : column;
+    width : 100%;
+    max-width : 600px;
+    align-items : center;
+    border : 2px solid var(--secondary-color);
+    border-radius : 5px;
+    margin : 10px auto;
+    padding : 20px;
+}
+
+#admins, #couriers {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dialog{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    width : 100%;
+    padding : 5px;
+    padding-left : 15px;
+    border : 1px solid var(--secondary-color);
+    border-radius : 5px;
+    margin-top : 10px;
+}
+
+.admin{
+    background-color : var(--secondary-color);
+    color : var(--primary-color) !important;
+}
+
+

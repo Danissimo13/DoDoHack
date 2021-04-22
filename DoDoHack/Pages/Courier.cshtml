@@ -1,0 +1,185 @@
+﻿@page "{Id:long}"
+@model DoDoHack.Pages.CourierModel
+@{
+    ViewData["Title"] = $"Курьер {Model.Courier.Id}";
+}
+
+<link rel="stylesheet" href="~/css/courier.css" />
+
+<div id="courier">
+    <div id="profile">
+        <img src="~/img/design/dodo-logo.png" width="200" />
+        <div id="data">
+            <h2>@Model.Courier.Name @Model.Courier.Surname</h2>
+            <h4>Логин: @Model.Courier.Login</h4>
+            <h5>Рейтинг: @Model.Courier.Rating ⭐</h5>
+            <h5>Телефон: @Model.Courier.Phone</h5>
+            <h6>
+                @if (Model.Courier.ShiftOpen)
+                {
+                    if (Model.Courier.OnLine)
+                    {
+                        <span>Смена открыта - На линии</span>
+                    }
+                    else
+                    {
+                        <span>Смена открыта - Не на линии</span>
+                    }
+                }
+                else
+                {
+                    @if (Model.Courier.OnLine)
+                    {
+                        <span>Смена закрыта - Заканчивает линию</span>
+                    }
+                    else
+                    {
+                        <span>Смена закрыта - Не на линии</span>
+                    }
+                }
+            </h6>
+            <h7>
+                @if (Model.Courier.AgreeAutoOrders)
+                {
+                    <span>На авто-принятии заказов</span>
+                }
+                else
+                {
+                    <span>Авто-принятие заказов - выкл.</span>
+                }
+            </h7>
+        </div>
+    </div>
+    <div id="actions">
+        @if (User.IsInRole(nameof(Admin)))
+        {
+            <form method="post" asp-page-handler="Shift">
+                <input class="btn btn-primary" type="submit" value="@(Model.Courier.ShiftOpen ? "Закрыть смену" : "Открыть смену")" />
+            </form>
+            <a class="btn btn-primary" asp-page="Conversation" asp-route-Id="@Model.Id">Написать</a>
+            <a class="btn btn-primary" asp-page="Track" asp-route-Id="@Model.Id">Отследить</a>
+        }
+        @if (User.FindFirst("Id").Value == Model.Id.ToString())
+        {
+            <button class="btn btn-primary" id="turn-on-track">Включить отслеживание</button>
+            <button class="btn btn-primary" id="turn-off-track">Выключить отслеживание</button>
+
+            <a class="btn btn-primary" asp-page="Messages">Мои сообщения</a>
+            if (Model.Courier.OnLine || Model.Courier.ShiftOpen)
+            {
+                <form method="post" asp-page-handler="Line">
+                    <input class="btn btn-primary" type="submit" value="@(Model.Courier.OnLine ? "Закрыть линию" : "Открыть линию")" />
+                </form>
+                @if (Model.Courier.OnLine)
+                {
+                    <form method="post" asp-page-handler="AutoOrders">
+                        <input class="btn btn-primary" type="submit" value="@(Model.Courier.AgreeAutoOrders ? "Не принимать заказы" : "Принимать заказы")" />
+                    </form>
+                }
+            }
+        }
+        <a class="btn btn-primary" asp-page="DayTracks" asp-route-Id="@Model.Id">Треки за день</a>
+
+        <form asp-page-handler="Delete">
+            <input class="btn btn-primary" type="submit" value="Удалить профиль" />
+        </form>
+    </div>
+    <div id="stats">
+        <h2 id="stats-btn">Статистика</h2>
+        <div id="stats-container">
+            <h5>Всего выполненно заказов: @Model.Courier.Statistic.ClosedOrdersCount</h5>
+            <h5>Закрытых смен: @Model.Courier.Statistic.ClosedShiftsCount</h5>
+            <h5>Отмененно заказов: @Model.Courier.Statistic.CanceledOrdersCount</h5>
+            <h5>Открытых линий: @Model.Courier.Statistic.OpenedLinesCount</h5>
+            <h5>Сумма доставок за последние 24ч: @(Model.Courier.Orders.Where(o => o.Closed && ((DateTime.Now - o.CreatedTime) < TimeSpan.FromDays(1))).Sum(o => o.TotalCost))</h5>
+            <div>
+                @if (Model.Courier.WorkZones.Any())
+                {
+                    <h5>Предпочтительные зоны работы</h5>
+                    <ul>
+                        @foreach (WorkZone workZone in Model.Courier.WorkZones)
+                        {
+                            <li class="work-zone">@workZone.Name</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <h4>Нет предпочтительных зон работы</h4>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="day-track">
+        <h2 id="track-btn">Отслеживание действий</h2>
+        <div id="track-container">
+            @foreach (CourierAction action in Model.Courier.CourierActions.Where(c => (DateTime.Now - c.ActionTime) < TimeSpan.FromDays(1)).OrderByDescending(a => a.ActionTime))
+            {
+                <div class="track-action">@action.ActionTime.ToShortTimeString(): @action.Discription</div>
+            }
+        </div>
+    </div>
+    <div id="change">
+        <h2>Редактирование данных</h2>
+        <form asp-page-handler="Change">
+            <input asp-for="Input.Name" value="@Model.Courier.Name" placeholder="Имя" />
+            <span class="validation" asp-validation-for="Input.Name"></span>
+
+            <input asp-for="Input.Surname" value="@Model.Courier.Surname" placeholder="Фамиилия" />
+            <span class="validation" asp-validation-for="Input.Surname"></span>
+
+            <input asp-for="Input.Phone" value="@Model.Courier.Phone" placeholder="Телефон" />
+            <span class="validation" asp-validation-for="Input.Phone"></span>
+
+            @if (User.IsInRole(nameof(Admin)))
+            {
+                <input asp-for="Input.Rating" value="@Model.Courier.Rating" placeholder="Рейтинг" />
+                <span class="validation" asp-validation-for="Input.Rating"></span>
+            }
+
+            <input class="btn btn-primary" type="submit" value="Изменить" />
+        </form>
+    </div>
+    @if (User.IsInRole(nameof(Admin)))
+    {
+        <div id="zones-manage">
+            <div id="add-zones">
+                <h3>Прикрепить к зоне</h3>
+                <form asp-page-handler="PinZone">
+                    <select name="zoneId">
+                        <option>Выберите зону</option>
+                        @foreach (WorkZone zone in Model.WorkZones)
+                        {
+                            <option value="@zone.Id">@zone.Name</option>
+                        }
+                    </select>
+                    <input class="btn btn-primary" type="submit" value="Прикрепить" />
+                </form>
+            </div>
+            <div id="zones-list">
+                @foreach (WorkZone zone in Model.Courier.WorkZones)
+                {
+                    <div class="change-zone">
+                        <h4>@zone.Name</h4>
+                        <form asp-page-handler="UnpinZone">
+                            <input name="zoneId" value="@zone.Id" hidden />
+                            <input class="btn btn-primary" type="submit" value="Отвязать" />
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="orders-vision-manage">
+            <form asp-page-handler="OrdersVision">
+                <h4>Заказы в ценовом диапазоне:</h4>
+                <input name="from" type="number" min="0" value="@Model.Courier.OrdersVision.FromCost" placeholder="От" />
+                <input name="to" type="number" min="0" value="@Model.Courier.OrdersVision.ToCost" placeholder="До" />
+                <input class="btn btn-primary" type="submit" value="Изменить" />
+            </form>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script src="~/js/courier.js"></script>
+}

@@ -1,0 +1,121 @@
+﻿#products{
+    display : flex;
+    flex-direction : column;
+    margin : 10px auto;
+    width : 90%;
+    max-width : 600px;
+    align-items : center;
+}
+
+#create-product {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    text-align: center;
+}
+
+#create-product form {
+    display: flex;
+    display : none;
+    flex-direction: column;
+    margin-top: 5px;
+    width: 100%;
+}
+
+#create-product form input{
+    border-color : var(--secondary-color);
+    margin-top : 5px;
+    border : 1px solid;
+    border-radius : 5px;
+}
+
+#products #list{
+    display : flex;
+    flex-direction : row;
+    justify-content : center;
+    flex-wrap : wrap;
+    width : 90%;
+}
+
+#products #list .product{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    text-align : center;
+    margin : 5px;
+    border : 2px solid var(--secondary-color);
+    border-radius : 5px;
+    padding : 10px;
+}
+
+.input-wrapper {
+  width: 100%;
+  position: relative;
+  margin: 15px 0;
+  text-align: center;
+}
+ 
+.input-file {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+ 
+.input-file-icon-wrapper {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-right: 1px solid #fff;
+}
+ 
+.input-file-button-text {
+  line-height: 1;
+  margin-top: 1px;
+}
+ 
+.input-file-button {
+  width: 100%;
+  max-width: 250px;
+  margin-top : 10px;
+  height: 40px;
+  background: var(--secondary-color);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.product form{
+    margin-top : 5px;
+}
+
+#page-controller{
+    margin-top : 10px;
+}
+
+#page-controller a{
+    margin : 5px;
+}

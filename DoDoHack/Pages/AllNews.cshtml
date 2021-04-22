@@ -1,0 +1,68 @@
+﻿@page
+@model DoDoHack.Pages.AllNewsModel
+@{
+    ViewData["Title"] = "Новости";
+}
+
+<link rel="stylesheet" href="~/css/all-news.css" />
+
+
+<div id="all-news-page">
+    <h1>Важные новости</h1>
+    @if (User.IsInRole(nameof(Admin)))
+    {
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <div id="create-news">
+            <h1 id="create-news-slide">Публикация новости</h1>
+            <form method="post">
+                <input asp-for="Input.Topic" placeholder="Заголовок" />
+                <span class="validation" asp-validation-for="Input.Topic"></span>
+
+                <div id="editor"></div>
+                <textarea id="news-body" asp-for="Input.Body" hidden></textarea>
+
+                <input class="btn btn-primary" type="submit" value="Опубликовать" />
+            </form>
+        </div>
+    }
+
+    <div id="list">
+        @if (Model.ArrNews.Any())
+        {
+            <ol class="all-news">
+                @foreach (News news in Model.ArrNews)
+                {
+                    <li class="all-news-news" asp-page="News" asp-route-Id="@news.Id" style="--animation-order:1">
+                        <a class="news-link" asp-page="News" asp-route-Id="@news.Id">
+                            <div class="news-content news-content-lhs">
+                                <h2 class="news-title">@news.Topic</h2>
+                                <div class="news-footer">
+                                    <time>@news.PublishDate.ToShortDateString()</time>
+                                </div>
+                            </div>
+                            <div class="news-content news-content-rhs" aria-hidden="true">
+                                <h2 class="news-title">@news.Topic</h2>
+                                <div class="news-footer">
+                                    <time>@news.PublishDate.ToShortDateString()</time>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                }
+            </ol>
+        }
+        else
+        {
+            <h2>Новостей пока нет</h2>
+        }
+    </div>
+</div>
+
+
+@if (User.IsInRole(nameof(Admin)))
+{
+    @section Scripts{
+        <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <script src="~/js/all-news.js"></script>
+    }
+}

@@ -1,0 +1,157 @@
+﻿#courier{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    width : 550px;
+    margin: 10px auto;
+}
+
+#profile{
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    padding : 5px;
+    border: 3px solid var(--secondary-color);
+    border-radius : 5px;
+    width : 100%;
+}
+
+#actions {
+    margin-top : 10px;
+    width : 100%;
+    display: flex;
+    flex-wrap : wrap;
+    flex-direction: row;
+}
+
+#actions .action{
+    margin : 10px;
+}
+
+#profile #data{
+    margin: 10px 10px;
+}
+
+#day-track{
+    width : 100%;
+    padding : 10px;
+    border : 1px solid var(--secondary-color);
+    border-radius : 5px;
+    overflow-y : auto;
+    overflow-x : hidden;
+    max-height : 200px;
+    margin-top : 10px;
+}
+
+.track-action{
+    border-bottom : 1px solid var(--secondary-color);
+}
+
+#stats{
+    width : 100%;
+    padding : 10px;
+    margin-top : 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius : 5px;
+}
+
+#stats-btn, #track-btn{
+    cursor : pointer;
+    margin : 0px;
+    width : 100%;
+}
+
+#change {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+#change form input {
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 2px solid orange;
+}
+
+#zones-manage{
+    width : 100%;
+    margin-top : 10px;
+    border : 1px solid var(--secondary-color);
+    padding : 10px;
+    border-radius : 5px;
+}
+
+#zones-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.change-zone{
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    align-items : center;
+    width : 100%;
+    border: 1px solid var(--secondary-color);
+    border-radius : 5px;
+    padding : 5px;
+    margin-top : 5px;
+}
+
+#add-zones{
+    border : 1px solid var(--secondary-color);
+    border-radius : 5px;
+    padding : 5px;
+}
+
+#add-zones select{
+    background-color : var(--secondary-color);
+    color : var(--primary-color);
+    height : 35px;
+    border-color: var(--secondary-color);
+}
+
+#orders-vision-manage{
+    margin-top : 10px;
+    border : 1px solid var(--secondary-color);
+    border-radius : 5px;
+    padding : 10px;
+    margin-bottom : 10px;
+}
+
+#orders-vision-manage form{
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    width : 100%;
+}
+
+#orders-vision-manage form input{
+    border-color: var(--secondary-color);
+    border-radius : 5px;
+    border : 1px solid;
+    margin-top : 5px;
+}
+
+@media only screen and (max-device-width: 480px) {
+    #courier{
+        width : 100%;
+    }
+
+    #courier #profile img{
+        width : 75px;
+    }
+
+    #change form{
+        display : flex;
+        flex-direction : column;
+    }
+}
